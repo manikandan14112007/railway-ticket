@@ -1,0 +1,268 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Module 4: Validation Scripting - RailExpress</title>
+    <link rel="stylesheet" href="css/style.css">
+    <style>
+        .module-nav-bar {
+            background: rgba(15, 23, 42, 0.9);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+            padding: 10px 0;
+            font-size: 0.85rem;
+        }
+        .module-nav-list {
+            display: flex;
+            gap: 12px;
+            list-style: none;
+            overflow-x: auto;
+            padding: 0;
+            margin: 0;
+        }
+        .module-nav-link {
+            color: #94a3b8;
+            text-decoration: none;
+            padding: 4px 12px;
+            border-radius: 4px;
+            white-space: nowrap;
+            transition: all 0.2s;
+        }
+        .module-nav-link.active, .module-nav-link:hover {
+            color: #fff;
+            background: rgba(99, 102, 241, 0.2);
+            border: 1px solid rgba(99, 102, 241, 0.4);
+        }
+        pre.code-block {
+            background: #090e1c;
+            border: 1px solid rgba(255, 255, 255, 0.12);
+            border-radius: 8px;
+            padding: 16px;
+            color: #e2e8f0;
+            font-family: 'Courier New', Courier, monospace;
+            font-size: 0.88rem;
+            overflow-x: auto;
+            line-height: 1.5;
+            margin: 14px 0;
+        }
+        .rule-card {
+            background: rgba(255, 255, 255, 0.03);
+            border-left: 4px solid var(--accent-cyan);
+            border-radius: 0 8px 8px 0;
+            padding: 14px 18px;
+            margin-bottom: 16px;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Modules Navigation Ribbon -->
+    <div class="module-nav-bar">
+        <div class="container">
+            <ul class="module-nav-list">
+                <li><span style="color: #38bdf8; font-weight: bold; margin-right: 6px;">PROJECT MODULES:</span></li>
+                <li><a href="biodata.html" class="module-nav-link">Module 1 (Bio Data)</a></li>
+                <li><a href="login.html" class="module-nav-link">Module 2 (Login Page)</a></li>
+                <li><a href="register.html" class="module-nav-link">Module 3 (Registration)</a></li>
+                <li><a href="validation.html" class="module-nav-link active">Module 4 (Validation Script)</a></li>
+                <li><a href="database.html" class="module-nav-link">Module 5 (Database Schema)</a></li>
+                <li><a href="index.html" class="module-nav-link">Module 6 (Final Project)</a></li>
+            </ul>
+        </div>
+    </div>
+
+    <!-- Header Navigation -->
+    <header class="site-header">
+        <div class="container nav-container">
+            <a href="index.html" class="brand">
+                <div class="brand-icon">🚄</div>
+                <div class="brand-text">
+                    <h1>RailExpress</h1>
+                    <span>Module 4: Client-Side Validation Scripting</span>
+                </div>
+            </a>
+            <div>
+                <a href="index.html" class="btn btn-primary" style="padding: 6px 14px; font-size: 0.85rem;">Launch Final Project (Module 6) ➔</a>
+            </div>
+        </div>
+    </header>
+
+    <main class="container" style="padding: 30px 24px 60px;">
+        
+        <!-- Overview Banner -->
+        <div class="card" style="margin-bottom: 24px;">
+            <div class="card-title-group">
+                <h3><span class="section-icon">🛡️</span> Client-Side Form Validation Specifications</h3>
+            </div>
+            <p style="color: #cbd5e1; line-height: 1.7;">
+                Module 4 implements strict client-side validation using modern JavaScript (ES6+). It features dual-layer validation:
+                <strong>1) Real-Time Keystroke Guard</strong> (blocks and sanitizes invalid characters on typing) and 
+                <strong>2) Form Submission Guard</strong> (prevents submit and flags error states with visual indicators and shake animations).
+            </p>
+        </div>
+
+        <!-- Interactive Playground -->
+        <div class="card" style="margin-bottom: 24px;">
+            <div class="card-title-group">
+                <h3><span class="section-icon">🧪</span> Live Validation Interactive Sandbox</h3>
+                <span class="speed-badge" style="margin-bottom: 0;">Interactive Playground</span>
+            </div>
+            <p style="color: #94a3b8; font-size: 0.9rem; margin-bottom: 20px;">
+                Test each validation rule live below. Try typing numbers into alphabet fields or letters into numeric fields to witness real-time error handling.
+            </p>
+
+            <div class="grid-2">
+                <!-- Sandbox 1: Alphabet Only -->
+                <div style="background: rgba(255,255,255,0.03); padding: 20px; border-radius: 12px; border: 1px solid rgba(255,255,255,0.08);">
+                    <h4 style="color: #38bdf8; margin-bottom: 10px;">Test Rule A: Alphabet Only (No Numbers)</h4>
+                    <p style="font-size: 0.82rem; color: #94a3b8; margin-bottom: 12px;">Type numbers (e.g. 123) to see instant blocking & error message:</p>
+                    
+                    <div class="form-group">
+                        <label class="form-label" for="testName">Passenger / Name Input:</label>
+                        <input type="text" id="testName" class="form-control" placeholder="Type here (e.g. Manikandan)">
+                        <span class="helper-text badge-rule">🔤 Alphabet only</span>
+                    </div>
+                </div>
+
+                <!-- Sandbox 2: Number Only -->
+                <div style="background: rgba(255,255,255,0.03); padding: 20px; border-radius: 12px; border: 1px solid rgba(255,255,255,0.08);">
+                    <h4 style="color: #38bdf8; margin-bottom: 10px;">Test Rule B: Numbers Only (No Alphabets)</h4>
+                    <p style="font-size: 0.82rem; color: #94a3b8; margin-bottom: 12px;">Type letters (e.g. abc) to see instant blocking & error message:</p>
+                    
+                    <div class="form-group">
+                        <label class="form-label" for="testNumber">Mobile / Age / Card Input:</label>
+                        <input type="text" id="testNumber" class="form-control" placeholder="Type here (e.g. 9876543210)" maxlength="10">
+                        <span class="helper-text badge-rule">🔢 Number only</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="grid-2" style="margin-top: 16px;">
+                <!-- Sandbox 3: Email -->
+                <div style="background: rgba(255,255,255,0.03); padding: 20px; border-radius: 12px; border: 1px solid rgba(255,255,255,0.08);">
+                    <h4 style="color: #38bdf8; margin-bottom: 10px;">Test Rule C: Email Format</h4>
+                    <p style="font-size: 0.82rem; color: #94a3b8; margin-bottom: 12px;">Must match pattern: username@domain.com</p>
+                    
+                    <div class="form-group">
+                        <label class="form-label" for="testEmail">Email Address:</label>
+                        <input type="email" id="testEmail" class="form-control" placeholder="e.g. passenger@domain.com">
+                    </div>
+                </div>
+
+                <!-- Sandbox 4: Age Limit -->
+                <div style="background: rgba(255,255,255,0.03); padding: 20px; border-radius: 12px; border: 1px solid rgba(255,255,255,0.08);">
+                    <h4 style="color: #38bdf8; margin-bottom: 10px;">Test Rule D: Passenger Age (1 - 120)</h4>
+                    <p style="font-size: 0.82rem; color: #94a3b8; margin-bottom: 12px;">Valid integer between 1 and 120</p>
+                    
+                    <div class="form-group">
+                        <label class="form-label" for="testAge">Passenger Age:</label>
+                        <input type="text" id="testAge" class="form-control" placeholder="e.g. 24" maxlength="3">
+                        <span class="helper-text badge-rule">🔢 Number only (1-120)</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Script Code Documentation -->
+        <div class="card">
+            <div class="card-title-group">
+                <h3><span class="section-icon">📜</span> Core JavaScript Validation Algorithms</h3>
+            </div>
+
+            <!-- Algorithm 1: Alphabet Only -->
+            <div class="rule-card">
+                <h4 style="color: #fff; margin-bottom: 4px;">1. Alphabet-Only Validation (Rejection of Numbers)</h4>
+                <p style="color: #94a3b8; font-size: 0.85rem;">Enforces strict alphabetic strings for names, origins, and cardholder labels.</p>
+            </div>
+            <pre class="code-block">
+validateAlphabetOnly(inputElement, fieldName = "This field") {
+    const val = inputElement.value.trim();
+    if (val === '') {
+        return this.showError(inputElement, `${fieldName} is required.`);
+    }
+    // Strict rejection if any digit is found
+    if (/\d/.test(val)) {
+        return this.showError(inputElement, `Numbers are NOT allowed in ${fieldName}! Only alphabets are permitted.`);
+    }
+    // Rejection of special symbols
+    if (!/^[A-Za-z\s]+$/.test(val)) {
+        return this.showError(inputElement, `Special characters are NOT allowed! Only alphabets are permitted.`);
+    }
+    return this.clearError(inputElement);
+}
+            </pre>
+
+            <!-- Algorithm 2: Number Only -->
+            <div class="rule-card" style="border-left-color: var(--accent-emerald); margin-top: 24px;">
+                <h4 style="color: #fff; margin-bottom: 4px;">2. Number-Only Validation (Rejection of Alphabets)</h4>
+                <p style="color: #94a3b8; font-size: 0.85rem;">Enforces strict numeric digits for Mobile number, Age, CVV, and Card numbers.</p>
+            </div>
+            <pre class="code-block">
+validateNumberOnly(inputElement, fieldName = "This field", minLength = 1, maxLength = 20) {
+    const rawVal = inputElement.value.trim();
+    if (rawVal === '') {
+        return this.showError(inputElement, `${fieldName} is required.`);
+    }
+    // Strict rejection if any alphabet is found
+    if (/[a-zA-Z]/.test(rawVal)) {
+        return this.showError(inputElement, `Alphabets are NOT allowed in ${fieldName}! Only numbers are permitted.`);
+    }
+    // Rejection of symbols/spaces
+    if (!/^[0-9]+$/.test(rawVal)) {
+        return this.showError(inputElement, `Special characters/spaces are NOT allowed! Only numbers are permitted.`);
+    }
+    if (rawVal.length < minLength || rawVal.length > maxLength) {
+        return this.showError(inputElement, `${fieldName} must be between ${minLength} and ${maxLength} digits.`);
+    }
+    return this.clearError(inputElement);
+}
+            </pre>
+
+            <!-- Algorithm 3: Real-Time Guard -->
+            <div class="rule-card" style="border-left-color: var(--accent-amber); margin-top: 24px;">
+                <h4 style="color: #fff; margin-bottom: 4px;">3. Real-Time Keystroke Guard (Live Input Interceptor)</h4>
+                <p style="color: #94a3b8; font-size: 0.85rem;">Listens to 'input' events, rejects invalid characters, and animates error notification immediately.</p>
+            </div>
+            <pre class="code-block">
+attachAlphabetGuard(inputElement, fieldName = "This field") {
+    inputElement.addEventListener('input', () => {
+        const raw = inputElement.value;
+        if (/\d/.test(raw)) {
+            this.showError(inputElement, `Numbers are NOT allowed in ${fieldName}! Only alphabets are permitted.`);
+            inputElement.value = raw.replace(/[0-9]/g, ''); // strip number
+        } else if (/[^a-zA-Z\s]/.test(raw)) {
+            this.showError(inputElement, `Special characters are NOT allowed in ${fieldName}!`);
+            inputElement.value = raw.replace(/[^a-zA-Z\s]/g, '');
+        } else if (raw.trim().length >= 2) {
+            this.clearError(inputElement);
+        }
+    });
+}
+            </pre>
+
+        </div>
+
+    </main>
+
+    <script src="js/validation.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const testName = document.getElementById('testName');
+            const testNumber = document.getElementById('testNumber');
+            const testEmail = document.getElementById('testEmail');
+            const testAge = document.getElementById('testAge');
+
+            Validator.attachAlphabetGuard(testName, 'Name Field');
+            Validator.attachNumberGuard(testNumber, 'Number Field', 10);
+            Validator.attachNumberGuard(testAge, 'Age Field', 3);
+
+            testEmail.addEventListener('blur', () => {
+                if (testEmail.value) Validator.validateEmail(testEmail);
+            });
+            testAge.addEventListener('blur', () => {
+                if (testAge.value) Validator.validateAge(testAge);
+            });
+        });
+    </script>
+</body>
+</html>
