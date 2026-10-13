@@ -1,0 +1,208 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Module 2: Passenger Login - RailExpress</title>
+    <link rel="stylesheet" href="css/style.css">
+    <style>
+        .module-nav-bar {
+            background: rgba(15, 23, 42, 0.9);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+            padding: 10px 0;
+            font-size: 0.85rem;
+        }
+        .module-nav-list {
+            display: flex;
+            gap: 12px;
+            list-style: none;
+            overflow-x: auto;
+            padding: 0;
+            margin: 0;
+        }
+        .module-nav-link {
+            color: #94a3b8;
+            text-decoration: none;
+            padding: 4px 12px;
+            border-radius: 4px;
+            white-space: nowrap;
+            transition: all 0.2s;
+        }
+        .module-nav-link.active, .module-nav-link:hover {
+            color: #fff;
+            background: rgba(99, 102, 241, 0.2);
+            border: 1px solid rgba(99, 102, 241, 0.4);
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Modules Navigation Ribbon -->
+    <div class="module-nav-bar">
+        <div class="container">
+            <ul class="module-nav-list">
+                <li><span style="color: #38bdf8; font-weight: bold; margin-right: 6px;">PROJECT MODULES:</span></li>
+                <li><a href="biodata.html" class="module-nav-link">Module 1 (Bio Data)</a></li>
+                <li><a href="login.html" class="module-nav-link active">Module 2 (Login Page)</a></li>
+                <li><a href="register.html" class="module-nav-link">Module 3 (Registration)</a></li>
+                <li><a href="validation.html" class="module-nav-link">Module 4 (Validation Script)</a></li>
+                <li><a href="database.html" class="module-nav-link">Module 5 (Database Schema)</a></li>
+                <li><a href="index.html" class="module-nav-link">Module 6 (Final Project)</a></li>
+            </ul>
+        </div>
+    </div>
+
+    <!-- Header Navigation -->
+    <header class="site-header">
+        <div class="container nav-container">
+            <a href="index.html" class="brand">
+                <div class="brand-icon">🚄</div>
+                <div class="brand-text">
+                    <h1>RailExpress</h1>
+                    <span>Module 2: Passenger Login Portal</span>
+                </div>
+            </a>
+            <div>
+                <a href="register.html" class="btn btn-secondary" style="padding: 6px 14px; font-size: 0.85rem;">New User? Register</a>
+            </div>
+        </div>
+    </header>
+
+    <main class="container" style="padding: 40px 24px;">
+        <div class="login-hero-wrapper">
+            
+            <!-- Bullet Train Banner Section -->
+            <div class="bullet-train-banner-container">
+                <img src="assets/images/bullet_train_banner.png" alt="High Speed Bullet Train Banner" class="bullet-train-img">
+                <div class="banner-overlay-gradient"></div>
+                <div class="banner-content">
+                    <div class="speed-badge">
+                        <span class="pulsing-dot"></span>
+                        MODULE 2 • HIGH-SPEED RAIL ACCESS
+                    </div>
+                    <h2>Secure Passenger<br>Authentication Portal</h2>
+                    <p>Enter your credentials to manage bullet train bookings, view live PNR status, and reserve high-speed seats.</p>
+                    
+                    <div class="banner-features-grid">
+                        <div class="feature-box">
+                            <span class="feature-number">350</span>
+                            <span class="feature-label">KM/H Speed</span>
+                        </div>
+                        <div class="feature-box">
+                            <span class="feature-number">256-Bit</span>
+                            <span class="feature-label">SSL Secure</span>
+                        </div>
+                        <div class="feature-box">
+                            <span class="feature-number">Instant</span>
+                            <span class="feature-label">PNR Confirm</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Login Card Section -->
+            <div class="login-card-section">
+                <div class="login-header">
+                    <h3>Sign In to Your Account</h3>
+                    <p>Access your passenger profile and book high-speed trains.</p>
+                </div>
+
+                <form id="standaloneLoginForm" novalidate>
+                    <div class="form-group">
+                        <label class="form-label" for="loginUsername">Passenger Username / Name <span class="required">*</span></label>
+                        <div class="input-with-icon">
+                            <span class="input-icon">👤</span>
+                            <input type="text" id="loginUsername" class="form-control" placeholder="Enter alphabetic username" required>
+                        </div>
+                        <span class="helper-text badge-rule">🔤 Alphabet only — Numbers are NOT allowed</span>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="form-label" for="loginPassword">Account Password <span class="required">*</span></label>
+                        <div class="input-with-icon">
+                            <span class="input-icon">🔒</span>
+                            <input type="password" id="loginPassword" class="form-control" placeholder="Enter your password" required>
+                        </div>
+                        <span class="helper-text">Minimum 4 characters</span>
+                    </div>
+
+                    <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px; font-size: 0.85rem;">
+                        <label style="display: flex; align-items: center; gap: 6px; cursor: pointer; color: #cbd5e1;">
+                            <input type="checkbox" checked style="accent-color: #4f46e5;"> Remember me
+                        </label>
+                        <a href="#" style="color: #38bdf8; text-decoration: none;">Forgot Password?</a>
+                    </div>
+
+                    <button type="submit" class="btn btn-primary btn-block" id="btnSubmitLogin">
+                        Sign In & Proceed to Booking ➔
+                    </button>
+
+                    <div class="demo-credentials-box" style="margin-top: 16px;">
+                        <div>
+                            <strong>Demo Fill:</strong> User: <em>Manikandan</em>
+                        </div>
+                        <button type="button" id="btnQuickDemo">⚡ Auto-Fill</button>
+                    </div>
+
+                    <div style="text-align: center; margin-top: 24px; font-size: 0.88rem; color: #94a3b8;">
+                        Don't have an account yet? 
+                        <a href="register.html" style="color: #38bdf8; font-weight: 600; text-decoration: none;">Register Now (Module 3)</a>
+                    </div>
+                </form>
+            </div>
+
+        </div>
+    </main>
+
+    <div class="toast-container" id="toastContainer"></div>
+
+    <script src="js/validation.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const userInput = document.getElementById('loginUsername');
+            const passInput = document.getElementById('loginPassword');
+            const form = document.getElementById('standaloneLoginForm');
+            const demoBtn = document.getElementById('btnQuickDemo');
+            const toastContainer = document.getElementById('toastContainer');
+
+            function showToast(msg, type = 'info') {
+                const toast = document.createElement('div');
+                toast.className = `toast toast-${type}`;
+                toast.innerHTML = `<span>${type === 'success' ? '✅' : 'ℹ️'}</span> <span>${msg}</span>`;
+                toastContainer.appendChild(toast);
+                setTimeout(() => toast.remove(), 3500);
+            }
+
+            Validator.attachAlphabetGuard(userInput, 'Username');
+
+            demoBtn.addEventListener('click', () => {
+                userInput.value = 'Manikandan';
+                passInput.value = 'Rail@2026';
+                Validator.clearError(userInput);
+                Validator.clearError(passInput);
+                showToast('Demo credentials populated!', 'info');
+            });
+
+            form.addEventListener('submit', (e) => {
+                e.preventDefault();
+                const isUserValid = Validator.validateAlphabetOnly(userInput, 'Username');
+                let isPassValid = true;
+
+                if (passInput.value.trim().length < 4) {
+                    Validator.showError(passInput, 'Password must be at least 4 characters long.');
+                    isPassValid = false;
+                } else {
+                    Validator.clearError(passInput);
+                }
+
+                if (isUserValid && isPassValid) {
+                    showToast(`Login Successful! Welcome, ${userInput.value}`, 'success');
+                    setTimeout(() => {
+                        window.location.href = 'index.html';
+                    }, 1200);
+                }
+            });
+        });
+    </script>
+</body>
+</html>
