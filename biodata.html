@@ -1,0 +1,308 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Module 1: Bio-Data</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f6f9;
+            margin: 0;
+            padding: 30px;
+            color: #333;
+        }
+
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            background: #ffffff;
+            padding: 40px;
+            border-radius: 8px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+            border: 1px solid #ddd;
+        }
+
+        .header {
+            text-align: center;
+            border-bottom: 2px solid #2b4c7e;
+            padding-bottom: 15px;
+            margin-bottom: 25px;
+        }
+
+        .header h1 {
+            margin: 0;
+            color: #2b4c7e;
+            font-size: 28px;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+        }
+
+        .section-title {
+            color: #2b4c7e;
+            font-size: 18px;
+            border-bottom: 2px solid #e2e8f0;
+            padding-bottom: 6px;
+            margin-top: 25px;
+            margin-bottom: 15px;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-bottom: 15px;
+        }
+
+        /* Personal Info Table */
+        .info-table td {
+            padding: 8px 10px;
+            vertical-align: top;
+        }
+
+        .info-table td.label {
+            font-weight: bold;
+            width: 30%;
+            color: #4a5568;
+        }
+
+        .info-table td.colon {
+            width: 3%;
+        }
+
+        /* Education Table */
+        .edu-table th, .edu-table td {
+            border: 1px solid #cbd5e0;
+            padding: 10px;
+            text-align: center;
+            font-size: 14px;
+        }
+
+        .edu-table th {
+            background-color: #2b4c7e;
+            color: #ffffff;
+            font-weight: bold;
+        }
+
+        .edu-table tr:nth-child(even) {
+            background-color: #f8fafc;
+        }
+
+        ul {
+            margin: 5px 0 15px 20px;
+            padding: 0;
+        }
+
+        ul li {
+            margin-bottom: 6px;
+            line-height: 1.5;
+        }
+
+        .declaration {
+            margin-top: 30px;
+            line-height: 1.6;
+            font-style: italic;
+        }
+
+        .signature-section {
+            margin-top: 50px;
+            display: flex;
+            justify-content: space-between;
+        }
+
+        .signature-box {
+            text-align: left;
+        }
+
+        .module-nav-bar {
+            background: #1e293b;
+            border-bottom: 1px solid #334155;
+            padding: 10px 0;
+            font-size: 0.85rem;
+            margin: -30px -30px 25px -30px;
+        }
+        .module-nav-list {
+            display: flex;
+            gap: 12px;
+            list-style: none;
+            overflow-x: auto;
+            padding: 0 30px;
+            margin: 0;
+            align-items: center;
+        }
+        .module-nav-link {
+            color: #94a3b8;
+            text-decoration: none;
+            padding: 4px 10px;
+            border-radius: 4px;
+            white-space: nowrap;
+            transition: all 0.2s;
+        }
+        .module-nav-link.active, .module-nav-link:hover {
+            color: #fff;
+            background: rgba(99, 102, 241, 0.3);
+            border: 1px solid #6366f1;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Modules Navigation Ribbon -->
+    <div class="module-nav-bar">
+        <ul class="module-nav-list">
+            <li><span style="color: #38bdf8; font-weight: bold; margin-right: 6px;">PROJECT MODULES:</span></li>
+            <li><a href="biodata.html" class="module-nav-link active">Module 1 (Bio Data)</a></li>
+            <li><a href="login.html" class="module-nav-link">Module 2 (Login Page)</a></li>
+            <li><a href="register.html" class="module-nav-link">Module 3 (Registration)</a></li>
+            <li><a href="validation.html" class="module-nav-link">Module 4 (Validation Script)</a></li>
+            <li><a href="database.html" class="module-nav-link">Module 5 (Database Schema)</a></li>
+            <li><a href="index.html" class="module-nav-link">Module 6 (Final Project)</a></li>
+        </ul>
+    </div>
+
+    <div class="container">
+        
+        <div style="display: flex; justify-content: flex-end; margin-bottom: 10px;">
+            <a href="Module_1_Biodata.pdf" target="_blank" style="background: #2b4c7e; color: #fff; text-decoration: none; padding: 6px 14px; border-radius: 4px; font-size: 0.82rem; font-weight: bold;">
+                📄 Download / View Module 1 PDF
+            </a>
+        </div>
+
+        <!-- Header -->
+        <div class="header">
+            <h1>BIO-DATA</h1>
+        </div>
+
+        <!-- Career Objective -->
+        <div class="section-title">Career Objective</div>
+        <p style="line-height: 1.6; margin: 0 0 15px 0;">
+            To secure a challenging position in a reputable organization where I can apply my technical skills, expand my knowledge, and contribute effectively to the company's growth.
+        </p>
+
+        <!-- Personal Details -->
+        <div class="section-title">Personal Details</div>
+        <table class="info-table">
+            <tr>
+                <td class="label">Full Name</td>
+                <td class="colon">:</td>
+                <td>Manikandan K A</td>
+            </tr>
+            <tr>
+                <td class="label">Father's Name</td>
+                <td class="colon">:</td>
+                <td>Arumugam K</td>
+            </tr>
+            <tr>
+                <td class="label">Date of Birth</td>
+                <td class="colon">:</td>
+                <td>15/06/2002</td>
+            </tr>
+            <tr>
+                <td class="label">Gender</td>
+                <td class="colon">:</td>
+                <td>Male</td>
+            </tr>
+            <tr>
+                <td class="label">Nationality</td>
+                <td class="colon">:</td>
+                <td>Indian</td>
+            </tr>
+            <tr>
+                <td class="label">Languages Known</td>
+                <td class="colon">:</td>
+                <td>Tamil, English</td>
+            </tr>
+            <tr>
+                <td class="label">Mobile Number</td>
+                <td class="colon">:</td>
+                <td>+91 98765 43210</td>
+            </tr>
+            <tr>
+                <td class="label">Email Address</td>
+                <td class="colon">:</td>
+                <td>manikandan@example.com</td>
+            </tr>
+            <tr>
+                <td class="label">Permanent Address</td>
+                <td class="colon">:</td>
+                <td>12/4, South Street, Chennai - 600001, Tamil Nadu.</td>
+            </tr>
+        </table>
+
+        <!-- Educational Qualifications -->
+        <div class="section-title">Educational Qualifications</div>
+        <table class="edu-table">
+            <thead>
+                <tr>
+                    <th>Qualification</th>
+                    <th>Institution</th>
+                    <th>Board / University</th>
+                    <th>Year of Passing</th>
+                    <th>Percentage / CGPA</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>B.E (Computer Science)</td>
+                    <td>XYZ College of Engineering</td>
+                    <td>Anna University</td>
+                    <td>2024</td>
+                    <td>8.4 CGPA</td>
+                </tr>
+                <tr>
+                    <td>HSC (12th)</td>
+                    <td>Government Higher Sec School</td>
+                    <td>State Board</td>
+                    <td>2020</td>
+                    <td>85%</td>
+                </tr>
+                <tr>
+                    <td>SSLC (10th)</td>
+                    <td>Government High School</td>
+                    <td>State Board</td>
+                    <td>2018</td>
+                    <td>90%</td>
+                </tr>
+            </tbody>
+        </table>
+
+        <!-- Technical Skills -->
+        <div class="section-title">Technical Skills</div>
+        <ul>
+            <li><strong>Programming Languages:</strong> Python, C, Java</li>
+            <li><strong>Web Technologies:</strong> HTML5, CSS3, JavaScript</li>
+            <li><strong>Databases:</strong> MySQL</li>
+            <li><strong>Tools & Platforms:</strong> Git, VS Code</li>
+        </ul>
+
+        <!-- Strengths -->
+        <div class="section-title">Strengths</div>
+        <ul>
+            <li>Strong problem-solving and analytical ability</li>
+            <li>Quick learner and adaptable to new technologies</li>
+            <li>Good team player with strong communication skills</li>
+        </ul>
+
+        <!-- Declaration -->
+        <div class="section-title">Declaration</div>
+        <p class="declaration">
+            I hereby declare that all the information provided above is true and correct to the best of my knowledge and belief.
+        </p>
+
+        <!-- Signature Section -->
+        <div class="signature-section">
+            <div class="signature-box">
+                <p><strong>Place:</strong> Chennai</p>
+                <p><strong>Date:</strong> 11/10/2026</p>
+            </div>
+            <div class="signature-right">
+                <br><br>
+                <p><strong>(MANIKANDAN K A)</strong><br>Signature</p>
+            </div>
+        </div>
+
+    </div>
+
+</body>
+</html>
