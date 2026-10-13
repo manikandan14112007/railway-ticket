@@ -1,0 +1,317 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Module 3: Passenger Registration - RailExpress</title>
+    <link rel="stylesheet" href="css/style.css">
+    <style>
+        .module-nav-bar {
+            background: rgba(15, 23, 42, 0.9);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+            padding: 10px 0;
+            font-size: 0.85rem;
+        }
+        .module-nav-list {
+            display: flex;
+            gap: 12px;
+            list-style: none;
+            overflow-x: auto;
+            padding: 0;
+            margin: 0;
+        }
+        .module-nav-link {
+            color: #94a3b8;
+            text-decoration: none;
+            padding: 4px 12px;
+            border-radius: 4px;
+            white-space: nowrap;
+            transition: all 0.2s;
+        }
+        .module-nav-link.active, .module-nav-link:hover {
+            color: #fff;
+            background: rgba(99, 102, 241, 0.2);
+            border: 1px solid rgba(99, 102, 241, 0.4);
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Modules Navigation Ribbon -->
+    <div class="module-nav-bar">
+        <div class="container">
+            <ul class="module-nav-list">
+                <li><span style="color: #38bdf8; font-weight: bold; margin-right: 6px;">PROJECT MODULES:</span></li>
+                <li><a href="biodata.html" class="module-nav-link">Module 1 (Bio Data)</a></li>
+                <li><a href="login.html" class="module-nav-link">Module 2 (Login Page)</a></li>
+                <li><a href="register.html" class="module-nav-link active">Module 3 (Registration)</a></li>
+                <li><a href="validation.html" class="module-nav-link">Module 4 (Validation Script)</a></li>
+                <li><a href="database.html" class="module-nav-link">Module 5 (Database Schema)</a></li>
+                <li><a href="index.html" class="module-nav-link">Module 6 (Final Project)</a></li>
+            </ul>
+        </div>
+    </div>
+
+    <!-- Header Navigation -->
+    <header class="site-header">
+        <div class="container nav-container">
+            <a href="index.html" class="brand">
+                <div class="brand-icon">🚄</div>
+                <div class="brand-text">
+                    <h1>RailExpress</h1>
+                    <span>Module 3: Passenger Registration</span>
+                </div>
+            </a>
+            <div>
+                <a href="login.html" class="btn btn-secondary" style="padding: 6px 14px; font-size: 0.85rem;">Already Registered? Sign In</a>
+            </div>
+        </div>
+    </header>
+
+    <main class="container" style="padding: 30px 24px 60px; max-width: 900px;">
+        <div class="card">
+            
+            <div class="card-title-group">
+                <div>
+                    <h3><span class="section-icon">📝</span> Passenger Account Registration</h3>
+                    <p style="color: #94a3b8; font-size: 0.88rem; margin-top: 4px;">Create your official passenger profile for high-speed railway bookings.</p>
+                </div>
+                <button type="button" class="btn btn-secondary" id="btnFillDemoReg" style="padding: 6px 14px; font-size: 0.82rem;">
+                    ⚡ Auto-Fill Demo Data
+                </button>
+            </div>
+
+            <form id="registrationForm" novalidate>
+                
+                <!-- 1. Personal Information -->
+                <h4 style="color: #38bdf8; margin: 20px 0 14px; font-size: 1rem; border-bottom: 1px solid rgba(255,255,255,0.08); padding-bottom: 6px;">
+                    1. Personal Information
+                </h4>
+
+                <div class="grid-2">
+                    <div class="form-group">
+                        <label class="form-label" for="regFirstName">First Name <span class="required">*</span></label>
+                        <div class="input-with-icon">
+                            <span class="input-icon">👤</span>
+                            <input type="text" id="regFirstName" class="form-control" placeholder="Enter first name" required>
+                        </div>
+                        <span class="helper-text badge-rule">🔤 Alphabet only — Numbers are NOT allowed</span>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="form-label" for="regLastName">Last Name <span class="required">*</span></label>
+                        <div class="input-with-icon">
+                            <span class="input-icon">👤</span>
+                            <input type="text" id="regLastName" class="form-control" placeholder="Enter last name" required>
+                        </div>
+                        <span class="helper-text badge-rule">🔤 Alphabet only — Numbers are NOT allowed</span>
+                    </div>
+                </div>
+
+                <div class="grid-3">
+                    <div class="form-group">
+                        <label class="form-label" for="regDob">Date of Birth <span class="required">*</span></label>
+                        <div class="input-with-icon">
+                            <span class="input-icon">📅</span>
+                            <input type="date" id="regDob" class="form-control" required>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="form-label">Gender <span class="required">*</span></label>
+                        <select id="regGender" class="form-control no-icon" required>
+                            <option value="Male" selected>Male</option>
+                            <option value="Female">Female</option>
+                            <option value="Transgender">Transgender</option>
+                        </select>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="form-label">Nationality <span class="required">*</span></label>
+                        <select id="regNationality" class="form-control no-icon" required>
+                            <option value="Indian" selected>Indian</option>
+                            <option value="NRI">NRI / Overseas Citizen</option>
+                            <option value="Foreign">Foreign National</option>
+                        </select>
+                    </div>
+                </div>
+
+                <!-- 2. Contact Details -->
+                <h4 style="color: #38bdf8; margin: 24px 0 14px; font-size: 1rem; border-bottom: 1px solid rgba(255,255,255,0.08); padding-bottom: 6px;">
+                    2. Contact Information
+                </h4>
+
+                <div class="grid-2">
+                    <div class="form-group">
+                        <label class="form-label" for="regMobile">Mobile Number (10 Digits) <span class="required">*</span></label>
+                        <div class="input-with-icon">
+                            <span class="input-icon">📞</span>
+                            <input type="tel" id="regMobile" class="form-control" placeholder="10-digit number" maxlength="10" required>
+                        </div>
+                        <span class="helper-text badge-rule">🔢 Number only — Alphabets are NOT allowed</span>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="form-label" for="regEmail">Email Address <span class="required">*</span></label>
+                        <div class="input-with-icon">
+                            <span class="input-icon">✉️</span>
+                            <input type="email" id="regEmail" class="form-control" placeholder="username@example.com" required>
+                        </div>
+                        <span class="helper-text">Official booking SMS & e-tickets sent here</span>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-label" for="regAddress">Residential Address <span class="required">*</span></label>
+                    <input type="text" id="regAddress" class="form-control no-icon" placeholder="Door No, Street Name, City, State" required>
+                </div>
+
+                <!-- 3. Security & Credentials -->
+                <h4 style="color: #38bdf8; margin: 24px 0 14px; font-size: 1rem; border-bottom: 1px solid rgba(255,255,255,0.08); padding-bottom: 6px;">
+                    3. Account Password & Security
+                </h4>
+
+                <div class="grid-2">
+                    <div class="form-group">
+                        <label class="form-label" for="regPassword">Create Password <span class="required">*</span></label>
+                        <div class="input-with-icon">
+                            <span class="input-icon">🔒</span>
+                            <input type="password" id="regPassword" class="form-control" placeholder="Minimum 6 characters" required>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="form-label" for="regConfirmPassword">Confirm Password <span class="required">*</span></label>
+                        <div class="input-with-icon">
+                            <span class="input-icon">🔒</span>
+                            <input type="password" id="regConfirmPassword" class="form-control" placeholder="Re-enter password" required>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="grid-2">
+                    <div class="form-group">
+                        <label class="form-label">Security Question</label>
+                        <select id="regSecQuestion" class="form-control no-icon">
+                            <option>What was the name of your first school?</option>
+                            <option>What is your pet's name?</option>
+                            <option>What is your favorite travel destination?</option>
+                        </select>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="form-label" for="regSecAnswer">Security Answer <span class="required">*</span></label>
+                        <input type="text" id="regSecAnswer" class="form-control no-icon" placeholder="Answer for account recovery" required>
+                    </div>
+                </div>
+
+                <!-- Terms -->
+                <div style="margin: 20px 0;">
+                    <label style="display: flex; align-items: flex-start; gap: 10px; cursor: pointer; color: #cbd5e1; font-size: 0.88rem;">
+                        <input type="checkbox" id="regTerms" required style="margin-top: 4px; accent-color: #4f46e5;">
+                        <span>I accept the Indian High-Speed Railways Terms of Service, Privacy Policy, and Passenger Reservation Guidelines.</span>
+                    </label>
+                </div>
+
+                <button type="submit" class="btn btn-primary btn-block" style="padding: 14px; font-size: 1rem; margin-top: 10px;">
+                    Complete Registration & Go to Login ➔
+                </button>
+            </form>
+
+        </div>
+    </main>
+
+    <div class="toast-container" id="toastContainer"></div>
+
+    <script src="js/validation.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const firstNameInput = document.getElementById('regFirstName');
+            const lastNameInput = document.getElementById('regLastName');
+            const mobileInput = document.getElementById('regMobile');
+            const emailInput = document.getElementById('regEmail');
+            const passInput = document.getElementById('regPassword');
+            const confirmPassInput = document.getElementById('regConfirmPassword');
+            const addressInput = document.getElementById('regAddress');
+            const answerInput = document.getElementById('regSecAnswer');
+            const termsInput = document.getElementById('regTerms');
+            const form = document.getElementById('registrationForm');
+            const demoBtn = document.getElementById('btnFillDemoReg');
+            const toastContainer = document.getElementById('toastContainer');
+
+            function showToast(msg, type = 'info') {
+                const toast = document.createElement('div');
+                toast.className = `toast toast-${type}`;
+                toast.innerHTML = `<span>${type === 'success' ? '✅' : 'ℹ️'}</span> <span>${msg}</span>`;
+                toastContainer.appendChild(toast);
+                setTimeout(() => toast.remove(), 3500);
+            }
+
+            // Attach strict character validation guards
+            Validator.attachAlphabetGuard(firstNameInput, 'First Name');
+            Validator.attachAlphabetGuard(lastNameInput, 'Last Name');
+            Validator.attachNumberGuard(mobileInput, 'Mobile Number', 10);
+
+            // Auto-fill demo button
+            demoBtn.addEventListener('click', () => {
+                firstNameInput.value = 'Manikandan';
+                lastNameInput.value = 'Arumugam';
+                document.getElementById('regDob').value = '2002-06-15';
+                mobileInput.value = '9876543210';
+                emailInput.value = 'manikandan@example.com';
+                addressInput.value = '12/4, South Street, Chennai - 600001';
+                passInput.value = 'Rail@2026';
+                confirmPassInput.value = 'Rail@2026';
+                answerInput.value = 'Chennai';
+                termsInput.checked = true;
+
+                Validator.clearError(firstNameInput);
+                Validator.clearError(lastNameInput);
+                Validator.clearError(mobileInput);
+                Validator.clearError(emailInput);
+                Validator.clearError(passInput);
+                Validator.clearError(confirmPassInput);
+                showToast('Registration demo data populated!', 'info');
+            });
+
+            form.addEventListener('submit', (e) => {
+                e.preventDefault();
+
+                const validFirst = Validator.validateAlphabetOnly(firstNameInput, 'First Name');
+                const validLast = Validator.validateAlphabetOnly(lastNameInput, 'Last Name');
+                const validMobile = Validator.validatePhone(mobileInput);
+                const validEmail = Validator.validateEmail(emailInput);
+
+                let validPass = true;
+                if (passInput.value.length < 6) {
+                    Validator.showError(passInput, 'Password must be at least 6 characters.');
+                    validPass = false;
+                } else {
+                    Validator.clearError(passInput);
+                }
+
+                if (confirmPassInput.value !== passInput.value) {
+                    Validator.showError(confirmPassInput, 'Passwords do not match!');
+                    validPass = false;
+                } else if (confirmPassInput.value) {
+                    Validator.clearError(confirmPassInput);
+                }
+
+                if (!termsInput.checked) {
+                    showToast('Please accept terms and conditions.', 'error');
+                    return;
+                }
+
+                if (validFirst && validLast && validMobile && validEmail && validPass) {
+                    showToast('Registration Successful! Redirecting to Login...', 'success');
+                    setTimeout(() => {
+                        window.location.href = 'login.html';
+                    }, 1500);
+                } else {
+                    showToast('Please fix the highlighted errors.', 'error');
+                }
+            });
+        });
+    </script>
+</body>
+</html>
