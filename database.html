@@ -1,0 +1,362 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Module 5: Database Schema & Table Creation - RailExpress</title>
+    <link rel="stylesheet" href="css/style.css">
+    <style>
+        .module-nav-bar {
+            background: rgba(15, 23, 42, 0.9);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+            padding: 10px 0;
+            font-size: 0.85rem;
+        }
+        .module-nav-list {
+            display: flex;
+            gap: 12px;
+            list-style: none;
+            overflow-x: auto;
+            padding: 0;
+            margin: 0;
+        }
+        .module-nav-link {
+            color: #94a3b8;
+            text-decoration: none;
+            padding: 4px 12px;
+            border-radius: 4px;
+            white-space: nowrap;
+            transition: all 0.2s;
+        }
+        .module-nav-link.active, .module-nav-link:hover {
+            color: #fff;
+            background: rgba(99, 102, 241, 0.2);
+            border: 1px solid rgba(99, 102, 241, 0.4);
+        }
+
+        .sql-box {
+            position: relative;
+            background: #090e1c;
+            border: 1px solid rgba(255, 255, 255, 0.12);
+            border-radius: 8px;
+            padding: 20px;
+            margin-bottom: 24px;
+        }
+
+        .sql-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 12px;
+            padding-bottom: 8px;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+        }
+
+        .sql-title {
+            color: var(--accent-cyan);
+            font-weight: 700;
+            font-size: 1.05rem;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .btn-copy {
+            background: rgba(255, 255, 255, 0.08);
+            border: 1px solid var(--border-color);
+            color: #e2e8f0;
+            padding: 4px 12px;
+            border-radius: 4px;
+            font-size: 0.78rem;
+            cursor: pointer;
+            transition: var(--transition);
+        }
+
+        .btn-copy:hover {
+            background: var(--primary);
+            color: #fff;
+        }
+
+        pre.sql-code {
+            color: #38bdf8;
+            font-family: 'Space Grotesk', 'Courier New', monospace;
+            font-size: 0.88rem;
+            line-height: 1.6;
+            margin: 0;
+            overflow-x: auto;
+        }
+
+        .keyword { color: #f43f5e; font-weight: bold; }
+        .type { color: #10b981; }
+        .func { color: #f59e0b; }
+        .comment { color: #64748b; font-style: italic; }
+
+        .schema-summary-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+            gap: 16px;
+            margin-bottom: 30px;
+        }
+
+        .schema-pill {
+            background: rgba(255, 255, 255, 0.03);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            border-radius: 10px;
+            padding: 16px;
+        }
+
+        .schema-pill h5 {
+            color: #fff;
+            font-size: 0.95rem;
+            margin-bottom: 4px;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+
+        .schema-pill p {
+            color: #94a3b8;
+            font-size: 0.8rem;
+            margin: 0;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Modules Navigation Ribbon -->
+    <div class="module-nav-bar">
+        <div class="container">
+            <ul class="module-nav-list">
+                <li><span style="color: #38bdf8; font-weight: bold; margin-right: 6px;">PROJECT MODULES:</span></li>
+                <li><a href="biodata.html" class="module-nav-link">Module 1 (Bio Data)</a></li>
+                <li><a href="login.html" class="module-nav-link">Module 2 (Login Page)</a></li>
+                <li><a href="register.html" class="module-nav-link">Module 3 (Registration)</a></li>
+                <li><a href="validation.html" class="module-nav-link">Module 4 (Validation Script)</a></li>
+                <li><a href="database.html" class="module-nav-link active">Module 5 (Database Schema)</a></li>
+                <li><a href="index.html" class="module-nav-link">Module 6 (Final Project)</a></li>
+            </ul>
+        </div>
+    </div>
+
+    <!-- Header Navigation -->
+    <header class="site-header">
+        <div class="container nav-container">
+            <a href="index.html" class="brand">
+                <div class="brand-icon">🚄</div>
+                <div class="brand-text">
+                    <h1>RailExpress</h1>
+                    <span>Module 5: Database Architecture & Tables</span>
+                </div>
+            </a>
+            <div>
+                <a href="index.html" class="btn btn-primary" style="padding: 6px 14px; font-size: 0.85rem;">Open Final Project (Module 6) ➔</a>
+            </div>
+        </div>
+    </header>
+
+    <main class="container" style="padding: 30px 24px 60px;">
+        
+        <!-- Header Banner -->
+        <div class="card" style="margin-bottom: 24px;">
+            <div class="card-title-group">
+                <div>
+                    <h3><span class="section-icon">🗄️</span> High-Speed Railway Database (MySQL / PostgreSQL)</h3>
+                    <p style="color: #94a3b8; font-size: 0.88rem; margin-top: 4px;">Database Name: <code>railway_ticket_db</code></p>
+                </div>
+                <span class="speed-badge" style="margin-bottom: 0;">Relational DDL Scripts</span>
+            </div>
+            <p style="color: #cbd5e1; line-height: 1.7;">
+                Module 5 defines the backend relational database structure required to power the high-speed bullet train ticket reservation system. 
+                Below are the production-grade SQL table creation scripts (DDL) with primary keys, foreign key constraints, indexes, and sample data.
+            </p>
+        </div>
+
+        <!-- Schema Overview Cards -->
+        <div class="schema-summary-grid">
+            <div class="schema-pill">
+                <h5>👤 1. USERS</h5>
+                <p>Stores passenger accounts, encrypted passwords, emails, and contact numbers.</p>
+            </div>
+            <div class="schema-pill">
+                <h5>🚉 2. STATIONS</h5>
+                <p>Stores railway station codes (NDLS, MMCT, MAS), city names, and state details.</p>
+            </div>
+            <div class="schema-pill">
+                <h5>🚄 3. TRAINS</h5>
+                <p>Stores high-speed bullet train models, numbers, maximum speed, and types.</p>
+            </div>
+            <div class="schema-pill">
+                <h5>🎫 4. BOOKINGS</h5>
+                <p>Stores 10-digit PNR, user link, total fare paid, and booking status (CNF/WL).</p>
+            </div>
+            <div class="schema-pill">
+                <h5>👥 5. PASSENGERS</h5>
+                <p>Stores individual passenger names, ages, genders, and allocated coach/berths.</p>
+            </div>
+            <div class="schema-pill">
+                <h5>💳 6. PAYMENTS</h5>
+                <p>Stores transaction IDs, payment gateways (Card/UPI/NetBanking), and timestamps.</p>
+            </div>
+        </div>
+
+        <!-- SQL Queries Section -->
+        
+        <!-- Database Creation -->
+        <div class="sql-box">
+            <div class="sql-header">
+                <span class="sql-title">📌 Database Initialization</span>
+                <button type="button" class="btn-copy" onclick="copySql(this)">📋 Copy SQL</button>
+            </div>
+            <pre class="sql-code">
+<span class="comment">-- 1. Create and switch to railway reservation database</span>
+<span class="keyword">CREATE DATABASE IF NOT EXISTS</span> railway_ticket_db 
+<span class="keyword">CHARACTER SET</span> utf8mb4 <span class="keyword">COLLATE</span> utf8mb4_unicode_ci;
+
+<span class="keyword">USE</span> railway_ticket_db;
+            </pre>
+        </div>
+
+        <!-- Table 1: Users -->
+        <div class="sql-box">
+            <div class="sql-header">
+                <span class="sql-title">👤 Table 1: USERS</span>
+                <button type="button" class="btn-copy" onclick="copySql(this)">📋 Copy SQL</button>
+            </div>
+            <pre class="sql-code">
+<span class="keyword">CREATE TABLE</span> users (
+    user_id <span class="type">INT AUTO_INCREMENT PRIMARY KEY</span>,
+    full_name <span class="type">VARCHAR(100) NOT NULL</span>,
+    email <span class="type">VARCHAR(120) NOT NULL UNIQUE</span>,
+    phone_number <span class="type">VARCHAR(15) NOT NULL UNIQUE</span>,
+    password_hash <span class="type">VARCHAR(255) NOT NULL</span>,
+    role <span class="type">ENUM('passenger', 'admin') DEFAULT 'passenger'</span>,
+    created_at <span class="type">TIMESTAMP DEFAULT CURRENT_TIMESTAMP</span>
+);
+            </pre>
+        </div>
+
+        <!-- Table 2: Stations -->
+        <div class="sql-box">
+            <div class="sql-header">
+                <span class="sql-title">🚉 Table 2: STATIONS</span>
+                <button type="button" class="btn-copy" onclick="copySql(this)">📋 Copy SQL</button>
+            </div>
+            <pre class="sql-code">
+<span class="keyword">CREATE TABLE</span> stations (
+    station_id <span class="type">INT AUTO_INCREMENT PRIMARY KEY</span>,
+    station_code <span class="type">VARCHAR(10) NOT NULL UNIQUE</span>,
+    station_name <span class="type">VARCHAR(100) NOT NULL</span>,
+    state <span class="type">VARCHAR(50) NOT NULL</span>
+);
+            </pre>
+        </div>
+
+        <!-- Table 3: Trains -->
+        <div class="sql-box">
+            <div class="sql-header">
+                <span class="sql-title">🚄 Table 3: TRAINS</span>
+                <button type="button" class="btn-copy" onclick="copySql(this)">📋 Copy SQL</button>
+            </div>
+            <pre class="sql-code">
+<span class="keyword">CREATE TABLE</span> trains (
+    train_id <span class="type">INT AUTO_INCREMENT PRIMARY KEY</span>,
+    train_number <span class="type">VARCHAR(10) NOT NULL UNIQUE</span>,
+    train_name <span class="type">VARCHAR(100) NOT NULL</span>,
+    train_type <span class="type">VARCHAR(50) NOT NULL</span>,
+    speed_kmh <span class="type">VARCHAR(20) NOT NULL</span>,
+    origin_station_id <span class="type">INT NOT NULL</span>,
+    dest_station_id <span class="type">INT NOT NULL</span>,
+    departure_time <span class="type">TIME NOT NULL</span>,
+    arrival_time <span class="type">TIME NOT NULL</span>,
+    duration <span class="type">VARCHAR(20) NOT NULL</span>,
+    punctuality_rate <span class="type">VARCHAR(10) DEFAULT '99.0%'</span>,
+    <span class="keyword">FOREIGN KEY</span> (origin_station_id) <span class="keyword">REFERENCES</span> stations(station_id),
+    <span class="keyword">FOREIGN KEY</span> (dest_station_id) <span class="keyword">REFERENCES</span> stations(station_id)
+);
+            </pre>
+        </div>
+
+        <!-- Table 4: Bookings -->
+        <div class="sql-box">
+            <div class="sql-header">
+                <span class="sql-title">🎫 Table 4: BOOKINGS</span>
+                <button type="button" class="btn-copy" onclick="copySql(this)">📋 Copy SQL</button>
+            </div>
+            <pre class="sql-code">
+<span class="keyword">CREATE TABLE</span> bookings (
+    booking_id <span class="type">INT AUTO_INCREMENT PRIMARY KEY</span>,
+    pnr_number <span class="type">VARCHAR(20) NOT NULL UNIQUE</span>,
+    user_id <span class="type">INT NOT NULL</span>,
+    train_id <span class="type">INT NOT NULL</span>,
+    journey_date <span class="type">DATE NOT NULL</span>,
+    class_code <span class="type">VARCHAR(10) NOT NULL</span>,
+    quota <span class="type">VARCHAR(30) DEFAULT 'General'</span>,
+    total_fare <span class="type">DECIMAL(10,2) NOT NULL</span>,
+    booking_status <span class="type">ENUM('CONFIRMED', 'WAITLISTED', 'CANCELLED') DEFAULT 'CONFIRMED'</span>,
+    booking_time <span class="type">TIMESTAMP DEFAULT CURRENT_TIMESTAMP</span>,
+    <span class="keyword">FOREIGN KEY</span> (user_id) <span class="keyword">REFERENCES</span> users(user_id),
+    <span class="keyword">FOREIGN KEY</span> (train_id) <span class="keyword">REFERENCES</span> trains(train_id)
+);
+            </pre>
+        </div>
+
+        <!-- Table 5: Passengers -->
+        <div class="sql-box">
+            <div class="sql-header">
+                <span class="sql-title">👥 Table 5: PASSENGERS</span>
+                <button type="button" class="btn-copy" onclick="copySql(this)">📋 Copy SQL</button>
+            </div>
+            <pre class="sql-code">
+<span class="keyword">CREATE TABLE</span> passengers (
+    passenger_id <span class="type">INT AUTO_INCREMENT PRIMARY KEY</span>,
+    booking_id <span class="type">INT NOT NULL</span>,
+    passenger_name <span class="type">VARCHAR(100) NOT NULL</span>,
+    age <span class="type">INT NOT NULL</span>,
+    gender <span class="type">ENUM('Male', 'Female', 'Transgender') NOT NULL</span>,
+    coach_number <span class="type">VARCHAR(10) NOT NULL</span>,
+    seat_number <span class="type">INT NOT NULL</span>,
+    berth_preference <span class="type">VARCHAR(30)</span>,
+    status <span class="type">VARCHAR(20) DEFAULT 'CNF'</span>,
+    <span class="keyword">FOREIGN KEY</span> (booking_id) <span class="keyword">REFERENCES</span> bookings(booking_id) <span class="keyword">ON DELETE CASCADE</span>
+);
+            </pre>
+        </div>
+
+        <!-- Table 6: Payments -->
+        <div class="sql-box">
+            <div class="sql-header">
+                <span class="sql-title">💳 Table 6: PAYMENTS</span>
+                <button type="button" class="btn-copy" onclick="copySql(this)">📋 Copy SQL</button>
+            </div>
+            <pre class="sql-code">
+<span class="keyword">CREATE TABLE</span> payments (
+    payment_id <span class="type">INT AUTO_INCREMENT PRIMARY KEY</span>,
+    booking_id <span class="type">INT NOT NULL</span>,
+    transaction_ref <span class="type">VARCHAR(50) NOT NULL UNIQUE</span>,
+    payment_method <span class="type">ENUM('CARD', 'UPI', 'NETBANKING') NOT NULL</span>,
+    amount_paid <span class="type">DECIMAL(10,2) NOT NULL</span>,
+    payment_status <span class="type">ENUM('SUCCESS', 'FAILED', 'PENDING') DEFAULT 'SUCCESS'</span>,
+    payment_timestamp <span class="type">TIMESTAMP DEFAULT CURRENT_TIMESTAMP</span>,
+    <span class="keyword">FOREIGN KEY</span> (booking_id) <span class="keyword">REFERENCES</span> bookings(booking_id)
+);
+            </pre>
+        </div>
+
+    </main>
+
+    <div class="toast-container" id="toastContainer"></div>
+
+    <script>
+        function copySql(btn) {
+            const pre = btn.closest('.sql-box').querySelector('pre');
+            navigator.clipboard.writeText(pre.innerText).then(() => {
+                const toast = document.createElement('div');
+                toast.className = 'toast toast-success';
+                toast.innerHTML = '<span>✅</span> <span>SQL Query copied to clipboard!</span>';
+                document.getElementById('toastContainer').appendChild(toast);
+                setTimeout(() => toast.remove(), 2500);
+            });
+        }
+    </script>
+</body>
+</html>
